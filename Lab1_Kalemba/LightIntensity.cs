@@ -11,6 +11,12 @@ public class LightIntensity
         g = G;
         b = B;
     }
+    public LightIntensity(LightIntensity other)
+    {
+        r = other.R;
+        g = other.G;
+        b = other.B;
+    }
 
     public double R => r;
     public double G => g;
@@ -44,6 +50,27 @@ public class LightIntensity
     public static LightIntensity operator /(LightIntensity a, double scalar)
     {
         return new LightIntensity(a.r / scalar, a.g / scalar, a.b / scalar);
+    }
+
+    public void set(double R, double G, double B)
+    {
+        r = R;
+        g = G;
+        b = B;
+    }
+
+    public void Add(LightIntensity other)
+    {
+        r += other.R;
+        g += other.G;
+        b += other.B;
+    }
+
+    public void Divide(float factor)
+    {
+        r /= factor;
+        g /= factor;
+        b /= factor;
     }
 
 

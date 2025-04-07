@@ -5,8 +5,8 @@ namespace RayTracing;
 public class Vector
 {
     public double x;
-    double y;
-    double z;
+    public double y;
+    public double z;
 
     //constructors
     public Vector(Vector v)
