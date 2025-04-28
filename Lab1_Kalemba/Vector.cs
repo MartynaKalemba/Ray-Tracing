@@ -27,7 +27,7 @@ public class Vector
         y += p2.y;
         z += p2.z;
     }
-    public static Vector add(Vector p1, Vector p2)
+    public static Vector Add(Vector p1, Vector p2)
     {
         return new Vector(p1.x + p2.x, p1.y + p2.y, p1.z + p2.z);
     }
@@ -37,7 +37,7 @@ public class Vector
         y -= p2.y;
         z -= p2.z;
     }
-    public static Vector sub(Vector p1, Vector p2)
+    public static Vector Sub(Vector p1, Vector p2)
     {
         Vector p3 = new Vector(
         p1.x - p2.x,
@@ -51,6 +51,15 @@ public class Vector
         x *= s;
         y *= s;
         z *= s;
+    }
+    public static Vector Mag(Vector v, double s)
+    {
+
+        double xx = v.x * s;
+        double yy = v.y * s;
+        double zz = v.z * s;
+
+        return new Vector(xx, yy, zz);
     }
     public void div(double s)
     {
@@ -102,7 +111,7 @@ public class Vector
         c.z = a.x * b.y - a.y * b.x;
         return c;
     }
-    public static double dot(Vector a, Vector b)
+    public static double Dot(Vector a, Vector b)
     {
 
         return a.x * b.x + a.y * b.y + a.z * b.z;

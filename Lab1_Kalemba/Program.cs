@@ -7,15 +7,15 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Testing Basics Vector methods");
-            Vector a = new Vector(1.0, 0, 0);
-            Vector b = new Vector(0, 0, 1.0);
+            Vector a = new Vector(1, 0, 0);
+            Vector b = new Vector(0, 0, 1);
             a.show();
             b.show();
             Console.WriteLine("A plus B");
             a.add(b);
             a.show();
             Console.WriteLine("B plus A");
-            Vector a1 = new Vector(1.0, 0, 0);
+            Vector a1 = new Vector(1, 0, 0);
             b.add(a1);
             b.show();
             Console.WriteLine("Angle between A and B");
@@ -36,7 +36,7 @@
             Sphere sphere = new Sphere(new Vector(0, 0, 0), 10);
             sphere.show();
             Vector start = new Vector(0, 0, -20);
-            Vector dirVector = Vector.sub(sphere.centre, start);
+            Vector dirVector = Vector.Sub(sphere.centre, start);
             dirVector.normalize();
             Ray ray1 = new Ray(start, dirVector);
 
@@ -45,38 +45,36 @@
             Vector v1;
             Vector v2;
             //10. przecięcie sfery z promieniami
-            Console.WriteLine($"Sphere and ray1: {ray1.intersect(sphere, out v1, out v2)}");
+            IntersectionInfo intersectionInfo = sphere.Intersect(ray1);
+            Console.WriteLine($"Sphere and ray1: {sphere.Intersect(ray1)}");
             //11 wyswietlenie koordynatow
             Console.WriteLine($"Intersection Sphere and ray1:");
-            v1.show();
-            v2.show();
-            Console.WriteLine($"Sphere and ray2: {ray2.intersect(sphere, out v1, out v2)}");
-            if (v1 != null && v2 != null)
-            {
-                v1.show();
-                v2.show();
-            }
+            intersectionInfo.show();
+            intersectionInfo = sphere.Intersect(ray2);
+            Console.WriteLine($"Sphere and ray2: {sphere.Intersect(ray2)}");
+            intersectionInfo.show();
 
             //12
             Ray ray3 = new Ray(new Vector(10, -10, 0), new Vector(-1, 0, 0));
-            ray3.intersect(sphere, out v1, out v2);
+            intersectionInfo = sphere.Intersect(ray3);
             Console.WriteLine("Intersection Coordinates: ");
-            v1.show();
+            intersectionInfo.show();
             //13
             Plane plane = new Plane(new Vector(0, 0, 0), new Vector(0, 1, 1));
             //14
             Console.WriteLine("R2 and plane 1 Intersection Coordinates: {}");
-            ray2.intersect(plane, out v1);
-            v1.show();
+            intersectionInfo = plane.Intersect(ray2);
+            intersectionInfo.show();
+
             //15
             Triangle t1 = new Triangle(new Vector(0, 0, 0), new Vector(1, 0, 0), new Vector(0, 1, 0));
 
-            Ray triangleRay = new Ray(new Vector(-1, 0.5, 0), new Vector(1, 0.5, 0));
-            Console.WriteLine($"Triangle and ray1: {triangleRay.intersect(t1, out v1)}");
+            Ray triangleRay = new Ray(new Vector(-1, (float)0.5, 0), new Vector(1, (float)0.5, 0));
+            Console.WriteLine($"Triangle and ray1: {t1.Intersect(triangleRay)}");
             Ray triangleRay1 = new Ray(new Vector(2, -1, 0), new Vector(2, 2, 0));
-            Console.WriteLine($"Triangle and ray2: {triangleRay1.intersect(t1, out v1)}");
+            Console.WriteLine($"Triangle and ray2: {t1.Intersect(triangleRay1)}");
             Ray triangleRay2 = new Ray(new Vector(0, 0, -1), new Vector(0, 0, 1));
-            Console.WriteLine($"Triangle and ray3: {triangleRay2.intersect(t1, out v1)}");
+            Console.WriteLine($"Triangle and ray3: {t1.Intersect(triangleRay2)}");
 
         }
     }

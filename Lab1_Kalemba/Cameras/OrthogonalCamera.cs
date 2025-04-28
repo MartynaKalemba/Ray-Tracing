@@ -30,23 +30,22 @@ public class OrthogonalCamera : Camera
                 float centreX = -1.0f + (i + 0.5f) * pixelW;
                 float centreY = 1.0f - (j + 0.5f) * pixelH;
                 Ray ray = new Ray(new Vector(i + centreX, j + centreY, 0), new Vector(0, 0, 1));
-                Ray ray1 = new Ray(new Vector(i + centreX, j + centreY, 0), new Vector(0, 0, 1));
-                Vector intersection;
-                Vector intersection1;
-                if (ray.intersect(sphere, out intersection, out intersection1))
+
+
+                IntersectionInfo intersectionInfo = sphere.Intersect(ray);
+                if (intersectionInfo.doesIntersect())
                 {
                     image.setPixel(i, j, color);
-                    intersection.show();
-                    Console.WriteLine("hit");
                 }
                 else
                 {
                     image.setPixel(i, j, bgColor);
                 }
-                if (ray1.intersect(sphere2, out intersection, out intersection1))
+                IntersectionInfo intersectionInfo2 = sphere.Intersect(ray);
+                if (intersectionInfo2.doesIntersect())
                 {
                     image.setPixel(i, j, color3);
-                    intersection.show();
+
                 }
 
             }

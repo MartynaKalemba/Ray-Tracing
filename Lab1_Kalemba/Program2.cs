@@ -23,8 +23,8 @@ public class Program2
 
         PerspectiveCamera camera1 = new PerspectiveCamera(image);
         camera1.See();
-        camera1.see_aa_regular();
-        camera1.see_aa_random();
+        // camera1.see_aa_regular();
+        // camera1.see_aa_random();
     }
 
 
